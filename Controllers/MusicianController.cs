@@ -15,16 +15,16 @@ namespace kolokwium2.Controllers
     [Route("api/[controller]")]
     public class MusicianController
     {
-        private readonly IMusicLabelService _musicLabelService;
+        private readonly IMusicianService _musicLabelService;
 
-        public MusicianController(IMusicLabelService musicLabelService)
+        public MusicianController(IMusicianService musicLabelService)
         {
             _musicLabelService = musicLabelService;
         }
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public Task<IActionResult> GetAll()
         {
-            var musicians = await _musicLabelService.GetAllMusicians();
+            var musicians = _musicLabelService.GetAllMusicians();
             var result = new List<Creator>();
             foreach (var musician in musicians)
             {

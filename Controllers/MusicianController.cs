@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using kolokwium2.DTOs;
 using kolokwium2.Entities;
 using kolokwium2.Services;
+using System.Threading.Tasks;
 
 namespace kolokwium2.Controllers
 {
@@ -21,7 +22,7 @@ namespace kolokwium2.Controllers
             _musicLabelService = musicLabelService;
         }
         [HttpGet]
-        public Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll()
         {
             var musicians = await _musicLabelService.GetAllMusicians();
             var result = new List<Creator>();

@@ -22,7 +22,7 @@ namespace kolokwium2.Controllers
             _musicLabelService = musicLabelService;
         }
         [HttpGet]
-        public Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll()
         {
             var musicians = _musicLabelService.GetAllMusicians();
             var result = new List<Creator>();
@@ -35,7 +35,7 @@ namespace kolokwium2.Controllers
                     Nickname = musician.Nickname,
                 });
             }
-            return Ok(result);
+            return await Ok(result);
         }
-}
+    }
 }

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace kolokwium2.DTOs
 {
-    public class Muzyk
+    public class Musician
     {
         
     }

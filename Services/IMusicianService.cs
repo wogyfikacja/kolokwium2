@@ -9,7 +9,8 @@ namespace kolokwium2.Services
     {
         Task SaveChangesAsync();
         IQueryable<Musician> GetAllMusicians();
-        Musician GetMusicianByNameSurnameAndNickname(string FirstName,string LastName, string Nickname);
-        Task DeleteMusicianWithID(int id);
+        Task DeleteMusician(Musician musician);
+        public Musician GetMusicianWithNickname(string Nickname);
+        IQueryable<Track> GetTracksForMusician(Musician musician);
     }
 }

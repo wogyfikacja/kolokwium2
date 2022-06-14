@@ -37,7 +37,6 @@ namespace kolokwium2.Entities
                 e.Property(x => x.FirstName).HasMaxLength(50).IsRequired();
                 e.Property(x => x.LastName).HasMaxLength(50).IsRequired();
                 e.Property(x => x.Nickname).HasMaxLength(50).IsRequired();
-                e.HasMany(x => x.Musician_Tracks).WithOne(x => x.Musician).HasForeignKey(x => x.IdMusician);
                 e.HasData(
                     new Musician { IdMusician = 1, FirstName = "John", LastName = "Smith", Nickname = "John Smith" },
                     new Musician { IdMusician = 2, FirstName = "John", LastName = "Doe", Nickname = "John Doe" },
@@ -48,12 +47,22 @@ namespace kolokwium2.Entities
                 e.ToTable("Track");
                 e.HasKey(x => x.IdTrack);
                 e.Property(x => x.TrackName).HasMaxLength(50).IsRequired();
-                e.Property(x => x.Duration).IsRequired();
-                e.HasOne(x => x.Album).WithMany(x => x.Tracks).HasForeignKey(x => x.IdAlbum);
-                e.HasMany(x => x.Musician_Tracks).WithOne(x => x.Track).HasForeignKey(x => x.IdTrack);
+                e.Property(x => x.Duration).HasColumnType("float").IsRequired();
                 e.HasData(
-                    new Track { IdTrack = 1, TrackName = "Track 1", Duration = 120, IdAlbum = 1 },
-                    new Track { IdTrack = 2, TrackName = "Track 2", Duration = 180, IdAlbum = 1 }
+                    new Track { IdTrack = 1, TrackName = "Track 1", Duration = 1.5f },
+                    new Track { IdTrack = 2, TrackName = "Track 2", Duration = 2.5f },
+                    new Track { IdTrack = 3, TrackName = "Track 3", Duration = 3.5f }
+                    );
+            });
+            modelBuilder.Entity<Album>(e => {
+                e.ToTable("Album");
+                e.HasKey(x => x.IdAlbum);
+                e.Property(x => x.AlbumName).HasMaxLength(50).IsRequired();
+                e.Property(x => x.PublishDate).HasColumnType("date").IsRequired();
+                e.HasData(
+                    new Album { IdAlbum = 1, AlbumName = "Album 1", PublishDate = new DateTime(2020, 1, 1) },
+                    new Album { IdAlbum = 2, AlbumName = "Album 2", PublishDate = new DateTime(2020, 2, 1) },
+                    new Album { IdAlbum = 3, AlbumName = "Album 3", PublishDate = new DateTime(2020, 3, 1) }
                     );
             });
 

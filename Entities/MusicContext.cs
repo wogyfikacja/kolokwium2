@@ -8,11 +8,11 @@ namespace kolokwium2.Entities
 {
     public class MusicContext : DbContext
     {
-        DbSet<MusicLabel> MusicLabels { get; set; }
-        DbSet<Musician> Musicians { get; set; }
-        DbSet<Musician_Track> Musician_Tracks { get; set; }
-        DbSet<Track> Tracks { get; set; }
-        DbSet<Album> Albums { get; set; }
+        public DbSet<MusicLabel> MusicLabels { get; set; }
+        public DbSet<Musician> Musicians { get; set; }
+        public DbSet<Musician_Track> Musician_Tracks { get; set; }
+        public DbSet<Track> Tracks { get; set; }
+        public DbSet<Album> Albums { get; set; }
         public MusicContext(DbContextOptions options) : base(options)
         {
         }
